@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>星级评分系统</title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			body{font-size: 12px;}
+			ul{list-style: none;}
+			#start{position: relative;width: 600px;margin: 0 auto;}
+			#start span,#start ul{float: left;line-height: 19px;height: 19px;}
+			/*text-indent:-9999px字体隐藏*/
+			#start li{float: left;width: 24px;background: url(img/hui.png) no-repeat;cursor:pointer;text-indent:-9999px;}
+			#start li.on{background: url(img/huang.png);}
+			#start p{position: absolute;top:20px;width:159px;height:60px;display:none;padding:7px 10px 0;}
+			#star p b{color: orange;}
+			#star strong{color:orange;padding-left:10px;}
+		</style>
+		<script>
+			window.onload=function(){
+				var aStart=document.getElementById("start");
+				var aLi=document.getElementsByTagName("li");
+				var aP=document.getElementsByTagName("p")[0];
+				var aSpan=document.getElementsByTagName("span")[1];
+				var aUl=document.getElementsByTagName("ul")[0];
+				var aScore,aFloatScore;
+				var aMsg = [
+				"很不满意|差得太离谱，与卖家描述的严重不符，非常不满",
+				"不满意|部分有破损，与卖家描述的不符，不满意",
+				"一般|质量一般，没有卖家描述的那么好",
+				"满意|质量不错，与卖家描述的基本一致，还是挺满意的",
+				"非常满意|质量非常好，与卖家描述的完全一致，非常满意"
+				]
+				for (var i=0;i<aLi.length;i++) {
+					aLi[i].index=i;
+					//鼠标移过显示分数
+					aLi[i].onmouseover=function(){
+						clear();
+						for(var j = 0; j < this.index + 1; j++){
+                			aLi[j].className="on";
+                			//计算浮动层的位置
+                			aFloatScore=j+1;
+                			aP.style.display="block";
+							aP.style.left = aUl.offsetLeft + this.index * this.offsetWidth - 104 + "px";
+							//匹配浮动层文字内容
+							aP.innerHTML = "<em><b>" + (this.index+1) + "</b> 分 " + aMsg[this.index].match(/(.+)\|/)[1] + "</em>" + aMsg[this.index].match(/\|(.+)/)[1]
+
+            			}
+					}
+					//鼠标离开恢复上次分数
+					aLi[i].onmouseout=function(){
+						aP.style.display="none";
+						for(var j = 0; j < this.index + 1; j++){
+							aLi[j].className="";
+						}
+						for (var j = 0; j < aScore; j++) {
+							aLi[j].className="on";
+						}
+					}
+					//鼠标点击显示评分
+					aLi[i].onclick=function(){
+						aScore=this.index+1;//点击之后的分数
+						aP.style.display="none";
+ 						aSpan.innerHTML = "<strong>" + (this.index+1) + " 分</strong> (" + aMsg[this.index].match(/\|(.+)/)[1] + ")";
+					}
+				}
+				//清除
+ 				function clear(){
+ 					for (var i=0;i<aLi.length;i++) {
+ 						aLi[i].className="";
+ 					}
+ 				}
+ 				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="start">
+			<span>点击星星就能打分:</span>
+			<ul>
+				<li><a href="javascript:">1</a></li>
+				<li><a href="javascript:">2</a></li>
+				<li><a href="javascript:">3</a></li>
+				<li><a href="javascript:">4</a></li>
+				<li><a href="javascript:">5</a></li>
+			</ul>
+			<span></span>
+			<p></p>
+		</div>
+	</body>
+</html>

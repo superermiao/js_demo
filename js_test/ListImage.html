@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>图片列表：鼠标移入/移出改变图片透明度</title>
+		<style type="text/css">
+			ul,li{padding: 0;margin: 0;list-style: none;}
+			#imgList{border: 1px solid brown;width:45%;overflow: hidden;margin: 0 auto;}
+			#imgList li{float: left;border: 1px solid wheat;}
+			#imgList li img{cursor: pointer;opacity: 0.3;filter: grayscale(100%);margin:1px 1px 0 0;}
+			#imgList li.currentimg img{opacity: 1;filter: grayscale(0%);}
+		</style>
+		<script src="js/jquery-3.1.1.min.js"></script>	
+		<script>
+			/*window.onload=function(){
+				var List=document.getElementsByTagName("li");
+				for (var i=0;i<List.length;i++) {
+					List[i].onmouseover=function(){
+						this.className="currentimg";
+					}
+					List[i].onmouseout=function(){
+						this.className="";
+					}
+				}	
+			}*/
+			
+			$(document).ready(function(){
+					$("li").mouseenter(function(){
+						//$("li").each(function(){
+							$(this).addClass("currentimg");
+						//})
+					});
+					$("li").mouseleave(function(){
+						//$("li").each(function(){
+							$(this).removeClass("currentimg");
+						//})
+					});
+				
+			});
+		</script>
+	</head>
+	
+	<body>
+		<ul id="imgList">
+			<li><img src="img/1.jpg"/></li>
+			<li><img src="img/2.jpg"/></li>
+			<li><img src="img/3.jpg"/></li>
+			<li><img src="img/4.jpg"/></li>
+			<li><img src="img/5.jpg"/></li>
+			<li><img src="img/6.jpg"/></li>
+			<li><img src="img/7.jpg"/></li>
+			<li><img src="img/8.jpg"/></li>
+			<li><img src="img/9.jpg"/></li>
+			<li><img src="img/10.jpg"/></li>
+		</ul>
+	</body>
+</html>

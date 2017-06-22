@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>手风琴效果</title>
+		<script type="text/javascript">
+			var Accordion = function(el, multiple) {
+			    this.el = el || {};
+			    this.multiple = multiple || false;
+			
+			    var lis = this.el.find('li');
+			
+			    lis.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
+			};
+			Accordion.prototype.dropdown = function(e) {
+			    var $el = e.data.el,
+			            $this = $(this),
+			            $next = $this.find('.rec-info');
+			    $next.slideToggle();
+			    $this.toggleClass('active');
+			
+			    if (!e.data.multiple) {
+			        $el.find('.rec-info').not($next).slideUp().parent().removeClass('active');
+			    };
+			}
+			var accordion = new Accordion($('#rec-list'), false);
+		</script>
+	</head>
+	<body>
+		<ul id="rec-list">
+		    <li class="animate-box"><span class="add">北京</span><s></s><span class="zhiwei">运维工程师</span>
+		        <div class="rec-info">
+		            <h1 class="title">运维工程师</h1>
+		            <h3>岗位职责</h3>
+		            <ul>
+		                <li> 1、视频云基础系统架构维护和优化；</li>
+		                <li>2、业务故障处理；</li>
+		                <li> 3、主导或参与系统设计、部署等相关工作；</li>
+		                <li> 4、运维自动化的推进；</li>
+		                <li>5、值班监控。 </li>
+		            </ul>
+		            <h3>任职要求</h3>
+		            <ul>
+		                <li> 1、三年以上Linux系统（ubuntu为佳）维护工作经验，能够对系统进行优化；</li>
+		                <li>2、熟练shell/python；</li>
+		                <li> 3、熟悉相关服务：GlusterFs、lvs、nginx、mysql、redis等，并能够定位故障并处理、性能调优；</li>
+		                <li> 4、责任心，抗压能力，乐于沟通，细心，自驱。</li>
+		            </ul>
+		            <h3>简历投至： <a href="mailto:web@5sb.org">web@5sb.org</a><span> (注明应聘职位)。</span></h3>
+		        </div>
+		    </li>
+		</ul>
+	</body>
+</html>

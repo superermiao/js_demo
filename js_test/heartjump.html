@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>心跳</title>
+		<style type="text/css">
+			body {background: black;}
+			.heart {
+					margin: 100px auto;
+					width: 200px;
+					height: 200px;
+					position: relative;
+					animation-name: shake;
+					animation-duration: 1s;
+					animation-iteration-count: infinite;
+			}
+			.heart div {
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					background: pink;
+					animation-name: shadow;
+					animation-duration: 1s;
+					animation-iteration-count: infinite;
+			}
+			.topLeft,
+			.topRight {
+					border-radius: 100px 100px 0 0;
+			}
+			.topLeft {
+					transform: translate(-50px, 0) rotate(-45deg);
+			}
+			.topRight {
+					transform: translate(50px, 0) rotate(45deg);
+			}
+			.bottom {
+					transform: translate(0, 64px) rotate(45deg) scale(.9, .9);
+			}
+			@keyframes shake {
+					from {
+							  transform: scale(.9, .9);
+					}
+					to {
+							  transform: scale(1.1, 1.1);
+					}
+			}
+			@keyframes shadow {
+					from {}
+					to {
+							  box-shadow: 0px 0px 50px pink;
+					}
+			}
+		</style>
+	</head>
+	<body>
+		<!--<div class="wrapper">
+			<canvas id="canvas" width=150 height=150 style="border:1px solid  #000000"></canvas>
+		</div>
+		-->
+		<div class="heart">
+			<div class="topLeft"></div>
+			<div class="topRight"></div>
+			<div class="bottom"></div>
+		</div>
+		
+		
+		<!--<script>
+			
+			var canvas=document.getElementById("canvas");
+			var ctx=canvas.getContext("2d");
+			ctx.beginPath();
+			ctx.moveTo(75,40);
+			ctx.bezierCurveTo(75,37,70,25,50,25);
+			ctx.bezierCurveTo(20,25,22,62.5,22,55);
+			ctx.bezierCurveTo(20,80,40,102,75,120);
+			ctx.bezierCurveTo(110,102,130,80,128,55);
+			ctx.bezierCurveTo(128,55,130,25,100,25);
+			ctx.bezierCurveTo(85,25,75,37,75,40);
+			var gradient=ctx.createRadialGradient(0,0,0,0,0,150);
+			gradient.addColorStop(0,"rgba(244,28,285,0)");
+			gradient.addColorStop(1,"rgba(255,255,255,1)");
+			ctx.shadowBlur=20;
+			ctx.shadowColor="#FFA500";
+			ctx.fillStyle=gradient;
+			ctx.strokeStyle="#F3F3F3"
+			ctx.fill();
+			ctx.stroke();
+			setInterval(function(){
+				
+				ctx.scale(0.5,0.5);
+				
+			},1000);
+			
+			
+		</script>-->
+	</body>
+</html>
+
+
+
+	
+

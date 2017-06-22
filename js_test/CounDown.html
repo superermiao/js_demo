@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>倒计时时钟</title>
+		<style type="text/css">
+			body{color:#fff;}
+			#box{background-color: black;width: 300px;height:200px;margin: 0 auto;text-align: center;}/*text-align: center;div里的行内元素水平居中*/
+			span{color:#000;line-height:8;background:#fbfbfb;border:2px solid #b4b4b4;padding: 0 15px;margin:0 5px;vertical-align:middle;}
+			input{border-radius: 10px;width: 300px;height:30px;background-color: greenyellow;cursor:pointer;margin-top:20px;font-size: 20px;}/*inpur为替换元素，具有默认宽高，可以设置宽高*/
+			input.cancel{background-color: red;}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var CountDown=document.getElementById("box");
+				var Input=document.getElementById("button");
+				var timer=null;
+				Input.onclick=function(){
+					if(this.value=="启动"){
+						this.value="暂停";
+						this.className="cancel";
+						timer=setInterval(updateTime,1000);
+					}else{
+						this.value="启动";
+						this.className=" ";
+						clearInterval(timer);
+					}
+
+				}
+				
+				function format(a)
+				{
+					return a.toString().replace(/^(\d)$/,'0$1');/*
+					                                             * ^是以什么什么开头，^\d就是匹配一个数字，
+					                                             * 而且这个数字必须在字符串的开头，
+					                                             * \d外面加小括号是为了后面$1的引用，/^(\d)$/, "0$1" 的意思就是把1替换成01*/
+				}
+				
+				function updateTime ()
+				{
+					var aSpan = CountDown.getElementsByTagName("span");
+					var oRemain = aSpan[0].innerHTML.replace(/^0/,'') * 60 + parseInt(aSpan[1].innerHTML.replace(/^0/,''));
+					if(oRemain <= 0)
+					{
+						clearInterval(timer);
+						return
+					}
+					oRemain--;
+					aSpan[0].innerHTML = format(parseInt(oRemain / 60));
+					oRemain %= 60;
+					aSpan[1].innerHTML = format(parseInt(oRemain));
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<span>02</span>分钟
+			<span>01</span>秒
+			<input type="button" value="启动" id="button"/>
+		</div>
+	</body>
+</html>
